@@ -148,3 +148,5 @@ target
 /PRIVATE.md
 /.env.json
 /lambda.config.json
+/build/
+/dist/

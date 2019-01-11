@@ -1,13 +1,19 @@
-# A Typescript Lamda seed.
+# A Typescript React components seed.
 
-The repository contains scripts and npm aliases for:
- 
-0. Bundling a Typescript Lambda (with Parcel JS)
-0. Packaging a Lambda into a zip file
-0. Creating a new Lambda
-0. Updating an existing Lambda.
+The seed project is setup for:
 
-To run the scripts you'll need a working AWS account and you'll need to speciy a KMS key.
+tests: 
+    
+    $ npm t
+
+watching tests:
+
+    $ npm t -- --watchAll
+    
+React storybook
+
+    $ npm run storybook    
+
 
 More to follow.
 

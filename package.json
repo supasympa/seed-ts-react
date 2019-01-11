@@ -5,12 +5,15 @@
   "main": "index.ts",
   "scripts": {
     "prebuild": "rm -rf dist && mkdir dist",
-    "build": "parcel build ./src/index.ts --out-dir dist/",
+    "bundle": "NODE_ENV=production parcel build ./src/index.ts --out-dir build/",
+    "build": "tsc",
     "test": "jest",
     "clean-install": "rm -rf ./node_modules && npm i",
     "package": "ts-node ./scripts/package-lambda.ts",
     "create": "ts-node ./scripts/create-lambda.ts",
-    "predeploy": "npm run package"
+    "predeploy": "npm run package",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -27,16 +30,26 @@
   },
   "homepage": "https://github.com/supasympa/seed-ts-react#readme",
   "devDependencies": {
+    "@storybook/addon-actions": "4.1.6",
+    "@storybook/addon-info": "4.1.6",
+    "@storybook/addon-links": "4.1.6",
+    "@storybook/addon-notes": "4.1.6",
+    "@storybook/addon-options": "4.1.6",
+    "@storybook/react": "4.1.6",
     "@types/enzyme": "3.1.15",
     "@types/jest": "23.3.12",
     "@types/node": "10.12.18",
     "@types/react": "^16.0.36",
+    "@types/storybook__react": "4.0.0",
+    "awesome-typescript-loader": "5.2.1",
     "enzyme": "3.8.0",
     "enzyme-adapter-react-16": "1.7.1",
     "jest": "23.6.0",
     "parcel-bundler": "1.11.0",
     "prettier": "1.14.3",
     "prettier-tslint": "0.4.0",
+    "react-docgen-typescript-webpack-plugin": "1.1.0",
+    "react-docgen-typescript-loader": "3.0.0",
     "ts-jest": "23.10.5",
     "ts-node": "7.0.1",
     "tslint": "5.12.0",
@@ -46,6 +59,7 @@
   "dependencies": {
     "@types/enzyme-adapter-react-16": "1.0.3",
     "react": "16.7.0",
-    "react-dom": "16.7.0"
+    "react-dom": "16.7.0",
+    "storybook": "1.0.0"
   }
 }
