@@ -16,7 +16,7 @@ const exec = promisify(_exec);
 const executeTests = () => {
     return exec('npm t -- --useStderr')
         .then((result) => {
-            const { stderr } = result;
+            const { stderr, stdout } = result;
             if(stderr)
                 console.log('ERR ' + stderr);
             if(stdout)
@@ -25,10 +25,13 @@ const executeTests = () => {
         })
 };
 
-const commit = (filePath) => () => (exec(`git add ${filePath} && git commit -m 'WIP: on ${filePath} @ ${new Date().toISOString()}'`));
+const commit = (filePath) => (testsSuccess) => {
+    console.log(`${testsSuccess}`);
+    return exec(`git add . && git commit -m 'WIP: on ${filePath} @ ${new Date().toISOString()}'`)
+};
 
 const rollback = (filePath) => (testsFailed) => {
-    console.log(`${testsFailed.stdout}`);
+    console.log(`${testsFailed}`);
     return exec(`git checkout HEAD ${filePath}`)
         .then((rollbackResult) => {
             console.log(rollbackResult.stdout);

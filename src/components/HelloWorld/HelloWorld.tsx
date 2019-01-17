@@ -2,7 +2,12 @@
 import * as React from 'react';
 import './HelloWorld.css';
 
-export const HelloWorld: React.FunctionComponent = () => (
+export interface HelloWorldProps {
+    reverse?: boolean;
+}
 
-    <p>Hello world!</p>
+const reverse = (s: string) => s.split('').reverse().join('');
+
+export const HelloWorld: React.FunctionComponent<HelloWorldProps> = (props) => (
+    <p>{props.reverse ? reverse('Hello world!') : 'Hello world!'}</p>
 );
