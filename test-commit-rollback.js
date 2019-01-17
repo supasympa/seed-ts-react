@@ -18,7 +18,9 @@ const executeTests = () => {
         .then((result) => {
             const { stderr } = result;
             if(stderr)
-                console.log(stderr);
+                console.log('ERR ' + stderr);
+            if(stdout)
+                console.log('OUT ' + stdout);
             return stderr;
         })
 };
