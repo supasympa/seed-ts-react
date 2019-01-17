@@ -26,7 +26,7 @@ const executeTests = () => {
 const commit = (filePath) => () => (exec(`git add ${filePath} && git commit -m 'WIP: on ${filePath} @ ${new Date().toISOString()}'`));
 
 const rollback = (filePath) => (testsFailed) => {
-    console.log(`${testsFailed.stderr}`);
+    console.log(`${testsFailed.stdout}`);
     return exec(`git checkout HEAD ${filePath}`)
         .then((rollbackResult) => {
             console.log(rollbackResult.stdout);
@@ -44,7 +44,7 @@ watch('./src')
             console.log(`FILECHANGE: ${!!filePath ? filePath : ''} (${eventType})\n`);
 
             executeTests()
-                .then(commit(filePath))
-                .catch(rollback(filePath))
+                .then(commit(`./src/${filePath}`))
+                .catch(rollback(`./src/${filePath}`))
         }
     });
